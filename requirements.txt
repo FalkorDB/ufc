@@ -1,0 +1,4 @@
+falkordb==1.0.4
+openai==1.23.6
+pinecone==0.1.0
+tqdm==4.66.1
