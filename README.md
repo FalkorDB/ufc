@@ -65,6 +65,11 @@ export OPENAI_API_KEY="YOUR_OPENAI_KEY"
 python QA.py
 ```
 
+Graph generated:
+
+
+![Alt text](assets/UFC_Graph.png?raw=true "UFC Graph")
+
 ## Vector
 ### Prerequisites
 Create vector index, in this demo we'll be using [Pinecode](https://www.pinecone.io).
