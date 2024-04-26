@@ -5,7 +5,7 @@ from pinecone import Pinecone
 def main():
     client = OpenAI()
     
-    pc = Pinecone(api_key=os.getenv("PINECODE_TOKEN"))
+    pc = Pinecone(api_key=os.getenv("PINECONE_TOKEN"))
     index = pc.Index("ufc")
 
     SYSTEM_MESSAGE = "You're a helpful assistance, base your answer only on the provided context, do not use preexisting knowledge."
@@ -45,7 +45,7 @@ def main():
         # extend conversation with assistant's reply
         messages.append(response_message)
 
-        print(response_message.content)
+        print(f"\n{response_message.content}\n")
 
 if __name__ == "__main__":
     main()

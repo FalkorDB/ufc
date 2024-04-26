@@ -281,7 +281,7 @@ def create_index():
     return None
     VECTOR_DIMENSIONS = 1536
 
-    pc = Pinecone(api_key=os.getenv("PINECODE_TOKEN"))
+    pc = Pinecone(api_key=os.getenv("PINECONE_TOKEN"))
     
     pc.create_index(
         name="ufc",
