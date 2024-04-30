@@ -1,6 +1,9 @@
 import csv
 from utils import *
 from falkordb import FalkorDB
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def load_fights(g):
     print("Loading fights")

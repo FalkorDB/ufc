@@ -4,6 +4,9 @@ from utils import *
 from tqdm import tqdm
 from openai import OpenAI
 from pinecone import Pinecone, ServerlessSpec
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DOC_IDX = 0
 
