@@ -2,6 +2,9 @@ import json
 from openai import OpenAI
 from falkordb import FalkorDB
 from graph_schema import graph_schema
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def run_cypher_query(graph, query):
     try:
