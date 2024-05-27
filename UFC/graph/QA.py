@@ -110,7 +110,6 @@ def main():
         if tool_calls:
             #print(f"response_message: {response_message}")
             messages.append(response_message)  # extend conversation with assistant's reply
-
             # Send the info for each function call and function response to the model
             for tool_call in tool_calls:
                 function_name = tool_call.function.name
