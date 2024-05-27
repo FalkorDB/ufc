@@ -19,9 +19,9 @@ This information includes among other details:
 * Fighter's reach
 
 # Burr to structure our AI agents
-We will use [Burr](https://github.com/dagworks-inc/burr) to structure our AI agent. Burr is an open source Python library
-that allows you to model your application as a flow chart, which is great for building AI agents. It also comes 
-an open source telemetry UI to help you debug and see the state of your application as it runs.
+We will use [Burr](https://github.com/dagworks-inc/burr) to structure our AI agent. Burr is an open-source Python library
+that allows you to model your application as a flow chart, which is great for building AI agents. It also comes with
+an open-source telemetry UI to help you debug and see the state of your application as it runs.
 
 # Querying the AI agent
 Once the data is loaded either into a Knowledge Graph or into a Vector DB, users can start asking the AI agent questions. For example:
