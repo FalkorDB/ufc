@@ -15,6 +15,7 @@ def main():
 
     # ---- load fighters ----
 
+    # Note if you want to track the progress of the load you can use the Hamilton UI:
     # from hamilton_sdk import adapters
     # tracker = adapters.HamiltonTracker(
     #    project_id=44,  # modify this as needed
@@ -28,7 +29,7 @@ def main():
         .with_modules(ingest_fighters)
         .enable_dynamic_execution(allow_experimental_mode=True)
         .with_remote_executor(executors.MultiThreadingExecutor(5))
-        # .with_adapters(tracker)
+        # .with_adapters(tracker)  # <-- uncomment this line if you want to track the progress
         .build()
     )
     # display the functions in the module
@@ -50,7 +51,7 @@ def main():
         .with_modules(ingest_fights)
         .enable_dynamic_execution(allow_experimental_mode=True)
         .with_remote_executor(executors.MultiThreadingExecutor(5))  # this will do 5 concurrent inserts
-        # .with_adapters(tracker)
+        # .with_adapters(tracker)  # <-- uncomment this line if you want to track the progress
         .build()
     )
     # display the functions in the module

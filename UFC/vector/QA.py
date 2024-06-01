@@ -1,3 +1,7 @@
+"""
+Vanilla code to query a Pinecone index with OpenAI's GPT-4 model.
+"""
+
 import os
 from openai import OpenAI
 from pinecone import Pinecone

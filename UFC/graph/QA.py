@@ -1,3 +1,6 @@
+"""
+This script is used to interact with the knowledge graph using OpenAI's GPT-4 model.
+"""
 import json
 from openai import OpenAI
 from falkordb import FalkorDB

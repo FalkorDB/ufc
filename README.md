@@ -57,15 +57,15 @@ Yes, there are fighters with a 50% win percentage in the dataset. Here are a few
 
 ```
 
-## Running the demo
+# Running the demo
 
 Install Python modules
 ```sh
 pip install -r requirements.txt
 ```
 
-## Knowledge Graph Approach
-### Prerequisites
+# Knowledge Graph Approach
+## Prerequisites
 
 Run FalkorDB
 ```sh
@@ -75,7 +75,7 @@ docker run -p 6379:6379 -p 3000:3000 -it --rm falkordb/falkordb:edge
 Create the Knowledge Graph
 From the `./UFC/graph` folder, run:
 
-#### Ingest data using the command line:
+## Ingest data using the command line:
 
 ```sh
 python hamilton_ingest.py
@@ -85,7 +85,14 @@ This will run the following two pipelines:
 ![ingest fighters](UFC/graph/ingest_fighters.png)
 ![ingest fights](UFC/graph/ingest_fights.png)
 
-#### Ingest data using a notebook:
+**Note:** Hamilton also comes with a UI that you can use to visualize the pipeline and
+track execution information about it. See hamilton_ingest.py or ingest_notebook.ipynb for more information.
+
+For a non-Hamilton version of ingestion code, see `ingest.py`; you'll see that this code is shorter,
+and harder to maintain/adjust. 
+
+
+## Ingest data using a notebook:
 
 ```sh
 pip install jupyter
@@ -93,7 +100,7 @@ jupyter notebook
 # select ingest_notebook.ipynb and follow the instructions there
 ```
 
-### Run the QA agent via the notebook:
+## Run the QA agent via the notebook:
 ```sh
 export OPENAI_API_KEY="YOUR_OPENAI_KEY"
 pip install jupyter
@@ -101,11 +108,13 @@ jupyter notebook
 # select qa_notebook.ipynb and follow the instructions there
 ```
 
-### Run the QA agent via the command line:
+## Run the QA agent via the command line:
 ```sh
 export OPENAI_API_KEY="YOUR_OPENAI_KEY"
 python burr_QA.py
 ```
+Note to compare what a non-Burr version of the QA agent would look like, see `QA.py`. Ask yourself
+which one is easier to maintain and adjust?
 
 Knowledge Graph generated:
 
@@ -115,8 +124,20 @@ Knowledge Graph generated:
 Application Graph generated:
 ![application graph](UFC/graph/ufc-burr.png)
 
-## Vector DB Approach
-### Prerequisites
+## See the trace of the QA agent with the Burr UI
+In a terminal run:
+```sh
+burr
+```
+Then open a browser and go to `http://localhost:7241` to see the Burr UI.
+
+You can then navigate to the `ufc-falkor` project and see the trace of the QA agent.
+
+![burr ui](UFC/graph/burr_ui.png)
+
+
+# Vector DB Approach
+## Prerequisites
 Create vector index, in this demo we'll be using [Pinecode](https://www.pinecone.io).
 The process of indexing the data can take about 15 minutes as we're creating ~10K vector embeddings and indexing them.
 
@@ -127,7 +148,7 @@ export PINECONE_API_KEY="YOUR_PINECONE_API_KEY"
 python ingest.py
 ```
 
-### Run the QA agent via the notebook:
+## Run the QA agent via the notebook:
 ```sh
 export OPENAI_API_KEY="YOUR_OPENAI_KEY"
 export PINECONE_API_KEY="YOUR_PINECONE_API_KEY"
@@ -136,7 +157,7 @@ jupyter notebook
 # select qa_notebook.ipynb and follow the instructions there
 ```
 
-### Run the QA agent via the command line:
+## Run the QA agent via the command line:
 ```sh
 export OPENAI_API_KEY="YOUR_OPENAI_KEY"
 export PINECONE_API_KEY="YOUR_PINECONE_API_KEY"
@@ -145,6 +166,17 @@ python burr_QA.py
 
 Application Graph generated:
 ![application graph](UFC/vector/ufc-burr.png)
+
+## See the trace of the QA agent with the Burr UI
+In a terminal run:
+```sh
+burr
+```
+Then open a browser and go to `http://localhost:7241` to see the Burr UI.
+
+You can then navigate to the `ufc-pinecone` project and see the trace of the QA agent.
+
+![burr ui](UFC/vector/burr_ui.png)
 
 # Results 
 From running the examples you'll see that the knowledge graph version managed to generate much more accurate answers

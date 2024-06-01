@@ -1,3 +1,6 @@
+"""
+Vanilla code to load UFC data into a Pinecone index.
+"""
 import os
 import csv
 from utils import *
