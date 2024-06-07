@@ -1,3 +1,6 @@
+"""
+Vanilla code to load UFC data into a FalkorDB.
+"""
 import csv
 from utils import *
 from falkordb import FalkorDB

@@ -2,3 +2,5 @@ falkordb==1.0.4
 openai==1.23.6
 pinecone-client==3.2.2
 tqdm==4.66.1
+burr[start,graphviz]
+sf-hamilton[sdk,visualization]

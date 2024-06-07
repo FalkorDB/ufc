@@ -1,3 +1,6 @@
+"""
+Vanilla code to load UFC data into a Pinecone index.
+"""
 import os
 import csv
 from utils import *
@@ -278,10 +281,9 @@ def add_vector(index, values, metadata):
     DOC_IDX += 1
 
 def create_index():
-    # return None
     VECTOR_DIMENSIONS = 1536
 
-    pc = Pinecone(api_key=os.getenv("PINECONE_TOKEN"))
+    pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
     
     pc.create_index(
         name="ufc",

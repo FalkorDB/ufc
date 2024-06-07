@@ -1,3 +1,6 @@
+"""
+This script is used to interact with the knowledge graph using OpenAI's GPT-4 model.
+"""
 import json
 from openai import OpenAI
 from falkordb import FalkorDB
@@ -110,7 +113,6 @@ def main():
         if tool_calls:
             #print(f"response_message: {response_message}")
             messages.append(response_message)  # extend conversation with assistant's reply
-
             # Send the info for each function call and function response to the model
             for tool_call in tool_calls:
                 function_name = tool_call.function.name
