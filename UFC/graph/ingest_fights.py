@@ -67,14 +67,19 @@ def write_to_graph(fight: pd.Series, graph: falkordb.Graph) -> str:
            CREATE (ref)-[:REFEREED]->(f)
            RETURN ID(f)
         """
-    f_id = _graph.query(q, {'date': _row.date, 'location': _row.location,
-                            'referee': _row.Referee if isinstance(_row.Referee, str) else "",
-                            'R_fighter': _row.R_fighter,
-                            'B_fighter': _row.B_fighter, 'fight': {'Last_round': _row.last_round,
-                                                                   'Last_round_time': _row.last_round_time,
-                                                                   'Format': _row.Format,
-                                                                   'Fight_type': _row.Fight_type}
-                            }).result_set[0][0]
+    f_id = _graph.query(
+        q,
+        {'date': _row.date,
+         'location': _row.location,
+         'referee': _row.Referee if isinstance(_row.Referee, str) else "",
+         'R_fighter': _row.R_fighter,
+         'B_fighter': _row.B_fighter,
+         'fight': {'Last_round': _row.last_round,
+                   'Last_round_time': _row.last_round_time,
+                   'Format': _row.Format,
+                   'Fight_type': _row.Fight_type}
+         }
+    ).result_set[0][0]
 
     # mark winner & loser
     q = """MATCH (f:Fight) WHERE ID(f) = $fight_id
@@ -82,8 +87,14 @@ def write_to_graph(fight: pd.Series, graph: falkordb.Graph) -> str:
            MATCH (w:Fighter {Name:$winner})
            CREATE (w)-[:WON]->(f), (l)-[:LOST]->(f)
         """
-    _graph.query(q,
-                 {'fight_id': f_id, 'loser': _row.Loser, 'winner': _row.Winner if isinstance(_row.Winner, str) else ""})
+    _graph.query(
+        q,
+        {'fight_id': f_id,
+         'loser': _row.Loser,
+         'winner': _row.Winner
+         if isinstance(_row.Winner, str) else ""
+         }
+    )
     return "success"
 
 

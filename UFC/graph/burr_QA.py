@@ -51,7 +51,7 @@ def schema_to_prompt(schema):
 def set_inital_chat_history(schema_prompt: str) -> list[dict]:
     SYSTEM_MESSAGE = "You are a Cypher expert with access to a directed knowledge graph\n"
     SYSTEM_MESSAGE += schema_prompt
-    SYSTEM_MESSAGE += ("Query the knowledge graph to extract relevant information to help you anwser the users "
+    SYSTEM_MESSAGE += ("Query the knowledge graph to extract relevant information to help you answer the users "
                        "questions, base your answer only on the context retrieved from the knowledge graph, "
                        "do not use preexisting knowledge.")
     SYSTEM_MESSAGE += ("For example to find out if two fighters had fought each other e.g. did Conor McGregor "
@@ -115,7 +115,8 @@ def human_converse(state: State, user_question: str) -> Tuple[dict, State]:
     reads=["question", "chat_history"],
     writes=["chat_history", "tool_calls"],
 )
-def AI_create_cypher_query(state: State, client: openai.Client) -> tuple[dict, State]:
+def AI_create_cypher_query(state: State,
+                           client: openai.Client) -> tuple[dict, State]:
     """AI step to create the cypher query."""
     messages = state["chat_history"]
     # Call the function
@@ -130,7 +131,8 @@ def AI_create_cypher_query(state: State, client: openai.Client) -> tuple[dict, S
     tool_calls = response_message.tool_calls
     if tool_calls:
         new_state = new_state.update(tool_calls=tool_calls)
-    return {"ai_response": response_message.content, "usage": response.usage.to_dict()}, new_state
+    return {"ai_response": response_message.content,
+            "usage": response.usage.to_dict()}, new_state
 
 
 @action(
@@ -155,7 +157,8 @@ def tool_call(state: State, graph: falkordb.Graph) -> Tuple[dict, State]:
             "content": function_response,
         }
         )
-        result["tool_calls"].append({"tool_call_id": tool_call.id, "response": function_response})
+        result["tool_calls"].append(
+            {"tool_call_id": tool_call.id, "response": function_response})
     new_state = new_state.update(tool_calls=[])
     return result, new_state
 
@@ -242,6 +245,7 @@ if __name__ == '__main__':
         question = input("What can I help you with?\n")
         if question == "exit":
             break
+        print(f"Human: {question}")
         action, _, state = _app.run(
             halt_before=["human_converse"],
             inputs={"user_question": question},
